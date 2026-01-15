@@ -53,8 +53,9 @@ body::before {
 .candidate-image {
   width: 90%;
   max-width: 280px;
-  aspect-ratio: 3/4;
-  object-fit: cover;
+  height: auto;
+  min-height: 300px;
+  object-fit: contain;
   border-radius: 16px;
   border: 3px solid white;
   box-shadow: 0 6px 20px rgba(0,0,0,0.4);
