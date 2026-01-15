@@ -12,10 +12,10 @@ function App() {
   const [isZoomed, setIsZoomed] = useState(false);
   const [sloganPhase, setSloganPhase] = useState(0);
 
-  // Election date: March 8, 2026 at 00:00:00
-  const electionDate = new Date('2026-03-08T00:00:00');
-
   useEffect(() => {
+    // Election date: March 8, 2026 at 00:00:00
+    const electionDate = new Date('2026-03-08T00:00:00');
+
     const calculateTimeLeft = () => {
       const now = new Date();
       const difference = electionDate - now;
@@ -36,7 +36,7 @@ function App() {
     calculateTimeLeft();
     const timer = setInterval(calculateTimeLeft, 1000);
     return () => clearInterval(timer);
-  }, [electionDate]);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
