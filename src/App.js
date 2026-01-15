@@ -104,7 +104,7 @@ function App() {
         </div>
       </div>
 
-      {/* Bottom Section - Always visible on mobile */}
+      {/* Bottom Section */}
       <div className="bottom-section">
         <div className="main-slogan">¡Estamos Listos!</div>
         

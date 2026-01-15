@@ -12,152 +12,206 @@ html, body, #root {
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #1a2b5c 0%, #1e3a8a 100%);
+  /* Fondo azul más natural y cálido */
+  background: linear-gradient(145deg, #1c3a7d 0%, #22469a 35%, #1e3a8a 100%);
   color: white;
   position: relative;
 }
 
+/* Textura sutil tipo tela o papel (más humano) */
 body::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background-image: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
+  background-image: 
+    radial-gradient(circle at 15% 25%, rgba(255,255,255,0.04) 1px, transparent 1px),
+    radial-gradient(circle at 85% 75%, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 30px 30px;
   pointer-events: none;
+  z-index: 0;
 }
 
 .App {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding: 12px;
-  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+  padding: 0 18px;
+  position: relative;
+  z-index: 1;
+  /* Safe area para móviles modernos */
+  padding-bottom: calc(env(safe-area-inset-bottom) + 12px);
+  padding-top: calc(env(safe-area-inset-top) + 12px);
 }
 
-/* Candidate image - optimized for mobile */
+/* Candidate image */
 .candidate-section {
-  flex: 1;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px 0;
 }
 
 .candidate-image {
-  width: 90%;
-  max-width: 260px;
+  width: 95%;
+  max-width: 300px;
   height: auto;
   object-fit: contain;
-  border-radius: 16px;
-  border: 3px solid white;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  border-radius: 20px;
+  border: 4px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.35),
+    0 0 0 2px rgba(29, 78, 216, 0.4);
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-/* Countdown */
+.candidate-image:hover {
+  transform: scale(1.02);
+}
+
+/* Countdown section */
 .countdown-section {
   text-align: center;
-  padding: 8px 0;
+  width: 100%;
+  max-width: 340px;
 }
 
 .slogan-text {
-  font-size: 1.4rem;
-  font-weight: bold;
-  margin-bottom: 16px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  letter-spacing: 0.5px;
 }
 
 .countdown-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  max-width: 320px;
-  margin: 0 auto;
+  gap: 12px;
 }
 
 .countdown-item {
-  background: rgba(255,255,255,0.15);
-  border-radius: 12px;
-  padding: 12px 4px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 16px 8px;
   text-align: center;
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease;
+}
+
+.countdown-item:hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
 }
 
 .countdown-number {
-  font-size: 1.7rem;
-  font-weight: bold;
-  font-family: monospace;
+  font-size: 1.9rem;
+  font-weight: 800;
+  font-family: 'Courier New', monospace;
+  margin-bottom: 6px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 .countdown-label {
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  opacity: 0.8;
+  letter-spacing: 1px;
+  opacity: 0.85;
+  font-weight: 600;
 }
 
 /* Bottom section */
 .bottom-section {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 16px;
-  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 22px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  width: 100%;
+  max-width: 340px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .main-slogan {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 16px;
+  font-size: 1.7rem;
+  font-weight: 800;
+  margin-bottom: 20px;
   text-align: center;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  background: linear-gradient(45deg, #ffffff, #e6f0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .logo-number-row {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  margin: 16px 0;
+  gap: 25px;
+  margin: 20px 0;
+}
+
+.party-logo {
+  background: white;
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
 }
 
 .party-logo img {
-  width: 45px;
-  height: 45px;
+  width: 52px;
+  height: 52px;
   object-fit: contain;
 }
 
 .candidate-number {
-  background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
   color: white;
-  font-size: 1.7rem;
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 12px;
+  font-size: 1.9rem;
+  font-weight: 800;
+  padding: 14px 26px;
+  border-radius: 16px;
   border: 2px solid white;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+.candidate-number:hover {
+  transform: scale(1.05);
 }
 
 .social-buttons {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  margin-top: 16px;
+  gap: 16px;
+  margin-top: 20px;
 }
 
 .social-button {
-  width: 42px;
-  height: 42px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
-  border: 2px solid rgba(255,255,255,0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.social-button:hover {
+  transform: translateY(-3px) scale(1.1);
 }
 
 .social-button img {
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   object-fit: cover;
 }
