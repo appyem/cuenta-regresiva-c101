@@ -62,7 +62,7 @@ function App() {
       {/* Candidate Image */}
       <div className="candidate-section">
         <motion.img
-          src="https://raw.githubusercontent.com/appyem/imagenesappy/refs/heads/main/juan%20camara%202.jpeg"
+          src="https://raw.githubusercontent.com/appyem/imagenesappy/refs/heads/main/juan%203.jpg"
           alt="Candidato Juan Camara"
           className="candidate-image"
           onClick={handleImageClick}
