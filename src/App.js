@@ -69,7 +69,16 @@ function App() {
           animate={{
             scale: isZoomed ? 1.05 : 1,
           }}
-          transition={{ type: "spring", stiffness: 300, damping: 25 }}
+          whileHover={{ 
+            scale: 1.03,
+            boxShadow: "0 15px 30px rgba(0,0,0,0.4), 0 0 0 3px rgba(29,78,216,0.6)"
+          }}
+          transition={{ 
+            type: "spring", 
+            stiffness: 400, 
+            damping: 25,
+            duration: 0.3 
+          }}
         />
       </div>
 
@@ -90,7 +99,15 @@ function App() {
         
         <div className="countdown-grid">
           {Object.entries(timeLeft).map(([unit, value]) => (
-            <div key={unit} className="countdown-item">
+            <motion.div
+              key={unit}
+              className="countdown-item"
+              whileHover={{ 
+                y: -3,
+                backgroundColor: 'rgba(255,255,255,0.18)'
+              }}
+              transition={{ type: "spring", stiffness: 400, damping: 15 }}
+            >
               <div className="countdown-number">
                 {value.toString().padStart(2, '0')}
               </div>
@@ -99,7 +116,7 @@ function App() {
                  unit === 'hours' ? 'HORAS' : 
                  unit === 'minutes' ? 'MIN' : 'SEG'}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -109,14 +126,24 @@ function App() {
         <div className="main-slogan">¡Estamos Listos!</div>
         
         <div className="logo-number-row">
-          <div className="party-logo">
+          <motion.div
+            className="party-logo"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
+          >
             <img
               src="https://raw.githubusercontent.com/appyem/imagenesappy/refs/heads/main/conservador.avif"
               alt="Partido Conservador"
             />
-          </div>
+          </motion.div>
           
-          <div className="candidate-number">101</div>
+          <motion.div
+            className="candidate-number"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            101
+          </motion.div>
         </div>
 
         <div className="social-buttons">
@@ -124,7 +151,7 @@ function App() {
             className="social-button"
             style={{ background: 'linear-gradient(135deg, #25D366, #128C7E)' }}
             onClick={handleWhatsAppClick}
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ y: -4, scale: 1.12 }}
             whileTap={{ scale: 0.95 }}
           >
             <img
@@ -139,7 +166,7 @@ function App() {
             rel="noopener noreferrer"
             className="social-button"
             style={{ background: 'linear-gradient(135deg, #1877F2, #0d5cb6)' }}
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ y: -4, scale: 1.12 }}
             whileTap={{ scale: 0.95 }}
           >
             <img
@@ -154,7 +181,7 @@ function App() {
             rel="noopener noreferrer"
             className="social-button"
             style={{ background: 'linear-gradient(45deg, #833AB4, #FD1D1D, #FCB045)' }}
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ y: -4, scale: 1.12 }}
             whileTap={{ scale: 0.95 }}
           >
             <img

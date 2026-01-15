@@ -12,13 +12,12 @@ html, body, #root {
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  /* Fondo azul más natural y cálido */
   background: linear-gradient(145deg, #1c3a7d 0%, #22469a 35%, #1e3a8a 100%);
   color: white;
   position: relative;
 }
 
-/* Textura sutil tipo tela o papel (más humano) */
+/* Textura sutil tipo tela */
 body::before {
   content: '';
   position: absolute;
@@ -32,6 +31,25 @@ body::before {
   z-index: 0;
 }
 
+/* Animación de fondo sutil */
+body::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%);
+  animation: float 30s infinite linear;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes float {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 .App {
   display: flex;
   flex-direction: column;
@@ -42,12 +60,10 @@ body::before {
   padding: 0 18px;
   position: relative;
   z-index: 1;
-  /* Safe area para móviles modernos */
   padding-bottom: calc(env(safe-area-inset-bottom) + 12px);
   padding-top: calc(env(safe-area-inset-top) + 12px);
 }
 
-/* Candidate image */
 .candidate-section {
   width: 100%;
   display: flex;
@@ -66,14 +82,16 @@ body::before {
     0 10px 25px rgba(0, 0, 0, 0.35),
     0 0 0 2px rgba(29, 78, 216, 0.4);
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .candidate-image:hover {
-  transform: scale(1.02);
+  transform: scale(1.03);
+  box-shadow: 
+    0 15px 30px rgba(0, 0, 0, 0.4),
+    0 0 0 3px rgba(29, 78, 216, 0.6);
 }
 
-/* Countdown section */
 .countdown-section {
   text-align: center;
   width: 100%;
@@ -86,6 +104,12 @@ body::before {
   margin-bottom: 20px;
   text-shadow: 0 2px 4px rgba(0,0,0,0.25);
   letter-spacing: 0.5px;
+  animation: breathe 4s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.95; }
+  50% { transform: scale(1.02); opacity: 1; }
 }
 
 .countdown-grid {
@@ -115,6 +139,12 @@ body::before {
   font-family: 'Courier New', monospace;
   margin-bottom: 6px;
   text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 
 .countdown-label {
@@ -125,7 +155,6 @@ body::before {
   font-weight: 600;
 }
 
-/* Bottom section */
 .bottom-section {
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(12px);
@@ -147,6 +176,7 @@ body::before {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: breathe 4s ease-in-out infinite;
 }
 
 .logo-number-row {
@@ -162,6 +192,11 @@ body::before {
   border-radius: 16px;
   padding: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.party-logo:hover {
+  transform: scale(1.05);
 }
 
 .party-logo img {
