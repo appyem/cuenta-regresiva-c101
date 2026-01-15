@@ -13,9 +13,8 @@ function App() {
   const [sloganPhase, setSloganPhase] = useState(0);
 
   useEffect(() => {
-    // Election date: March 8, 2026 at 00:00:00
     const electionDate = new Date('2026-03-08T00:00:00');
-
+    
     const calculateTimeLeft = () => {
       const now = new Date();
       const difference = electionDate - now;
@@ -60,26 +59,18 @@ function App() {
 
   return (
     <div className="App">
-      {/* Decorative elements for natural feel */}
-      <div className="natural-decoration circle" style={{ top: '10%', left: '8%', width: '60px', height: '60px' }}></div>
-      <div className="natural-decoration blob" style={{ bottom: '15%', right: '10%', width: '40px', height: '40px' }}></div>
-      <div className="natural-decoration circle" style={{ top: '40%', right: '15%', width: '25px', height: '25px' }}></div>
-
       {/* Candidate Image */}
-      <div className="candidate-image-container">
-        <motion.div
+      <div className="candidate-section">
+        <motion.img
+          src="https://raw.githubusercontent.com/appyem/imagenesappy/refs/heads/main/juan%20camara%202.jpeg"
+          alt="Candidato Juan Camara"
           className="candidate-image"
           onClick={handleImageClick}
           animate={{
-            scale: isZoomed ? 1.08 : 1,
+            scale: isZoomed ? 1.05 : 1,
           }}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
-        >
-          <img
-            src="https://raw.githubusercontent.com/appyem/imagenesappy/refs/heads/main/juan%20camara%202.jpeg"
-            alt="Candidato Juan Camara"
-          />
-        </motion.div>
+        />
       </div>
 
       {/* Countdown Timer */}
@@ -87,11 +78,11 @@ function App() {
         <AnimatePresence mode="wait">
           <motion.div
             key={sloganPhase}
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.5 }}
-            className="slogan-display"
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.4 }}
+            className="slogan-text"
           >
             {sloganPhases[sloganPhase]}
           </motion.div>
@@ -99,60 +90,42 @@ function App() {
         
         <div className="countdown-grid">
           {Object.entries(timeLeft).map(([unit, value]) => (
-            <motion.div
-              key={unit}
-              className="countdown-item"
-              whileHover={{ 
-                y: -3,
-                backgroundColor: 'rgba(255,255,255,0.18)'
-              }}
-              transition={{ type: "spring", stiffness: 400, damping: 15 }}
-            >
+            <div key={unit} className="countdown-item">
               <div className="countdown-number">
                 {value.toString().padStart(2, '0')}
               </div>
               <div className="countdown-label">
-                {unit === 'days' ? 'Días' : 
-                 unit === 'hours' ? 'Horas' : 
-                 unit === 'minutes' ? 'Min' : 'Seg'}
+                {unit === 'days' ? 'DÍAS' : 
+                 unit === 'hours' ? 'HORAS' : 
+                 unit === 'minutes' ? 'MIN' : 'SEG'}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
 
-      {/* Slogan Section */}
-      <div className="slogan-section">
+      {/* Bottom Section - Always visible on mobile */}
+      <div className="bottom-section">
         <div className="main-slogan">¡Estamos Listos!</div>
         
-        <div className="logo-number-container">
-          <motion.div
-            className="party-logo"
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
-          >
+        <div className="logo-number-row">
+          <div className="party-logo">
             <img
               src="https://raw.githubusercontent.com/appyem/imagenesappy/refs/heads/main/conservador.avif"
-              alt="Partido Conservador Colombiano"
+              alt="Partido Conservador"
             />
-          </motion.div>
+          </div>
           
-          <motion.div
-            className="candidate-number"
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            101
-          </motion.div>
+          <div className="candidate-number">101</div>
         </div>
 
         <div className="social-buttons">
           <motion.button
-            className="social-button whatsapp-btn"
+            className="social-button"
+            style={{ background: 'linear-gradient(135deg, #25D366, #128C7E)' }}
             onClick={handleWhatsAppClick}
-            whileHover={{ y: -5, scale: 1.12 }}
+            whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            title="Solicitar Publicidad por WhatsApp"
           >
             <img
               src="https://raw.githubusercontent.com/appyem/imagenesappy/refs/heads/main/logo%20whatsapp.jpg"
@@ -164,10 +137,10 @@ function App() {
             href="https://web.facebook.com/juanmlondonoj"
             target="_blank"
             rel="noopener noreferrer"
-            className="social-button facebook-btn"
-            whileHover={{ y: -5, scale: 1.12 }}
+            className="social-button"
+            style={{ background: 'linear-gradient(135deg, #1877F2, #0d5cb6)' }}
+            whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            title="Seguir en Facebook"
           >
             <img
               src="https://raw.githubusercontent.com/appyem/imagenesappy/refs/heads/main/facebook.png"
@@ -179,10 +152,10 @@ function App() {
             href="https://www.instagram.com/juanmlondonoj"
             target="_blank"
             rel="noopener noreferrer"
-            className="social-button instagram-btn"
-            whileHover={{ y: -5, scale: 1.12 }}
+            className="social-button"
+            style={{ background: 'linear-gradient(45deg, #833AB4, #FD1D1D, #FCB045)' }}
+            whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            title="Seguir en Instagram"
           >
             <img
               src="https://raw.githubusercontent.com/appyem/imagenesappy/refs/heads/main/instagram.webp"
