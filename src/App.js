@@ -36,7 +36,7 @@ function App() {
     calculateTimeLeft();
     const timer = setInterval(calculateTimeLeft, 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [electionDate]);
 
   useEffect(() => {
     const interval = setInterval(() => {
