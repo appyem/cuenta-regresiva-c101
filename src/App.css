@@ -17,37 +17,20 @@ body {
   position: relative;
 }
 
-/* Textura sutil tipo tela */
-body::before {
-  content: '';
+/* Logos del partido animados en el fondo */
+.party-logo-bg {
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-image: 
-    radial-gradient(circle at 15% 25%, rgba(255,255,255,0.04) 1px, transparent 1px),
-    radial-gradient(circle at 85% 75%, rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
-  background-size: 30px 30px;
-  pointer-events: none;
+  opacity: 0.08;
   z-index: 0;
+  animation: floatLogo 25s infinite linear;
 }
 
-/* Animación de fondo sutil */
-body::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%);
-  animation: float 30s infinite linear;
-  z-index: 0;
-  pointer-events: none;
-}
-
-@keyframes float {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+@keyframes floatLogo {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(20px, 30px) rotate(5deg); }
+  50% { transform: translate(-15px, 40px) rotate(-3deg); }
+  75% { transform: translate(10px, -20px) rotate(2deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
 }
 
 .App {
@@ -104,12 +87,6 @@ body::after {
   margin-bottom: 20px;
   text-shadow: 0 2px 4px rgba(0,0,0,0.25);
   letter-spacing: 0.5px;
-  animation: breathe 4s ease-in-out infinite;
-}
-
-@keyframes breathe {
-  0%, 100% { transform: scale(1); opacity: 0.95; }
-  50% { transform: scale(1.02); opacity: 1; }
 }
 
 .countdown-grid {
@@ -139,12 +116,19 @@ body::after {
   font-family: 'Courier New', monospace;
   margin-bottom: 6px;
   text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-  animation: pulse 2s infinite;
+  /* Efecto de pulso VISIBLE */
+  animation: pulseVisible 1.5s ease-in-out infinite;
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+@keyframes pulseVisible {
+  0%, 100% { 
+    transform: scale(1); 
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  }
+  50% { 
+    transform: scale(1.1); 
+    text-shadow: 0 0 15px rgba(255,255,255,0.6);
+  }
 }
 
 .countdown-label {
@@ -176,7 +160,6 @@ body::after {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: breathe 4s ease-in-out infinite;
 }
 
 .logo-number-row {
@@ -185,18 +168,6 @@ body::after {
   align-items: center;
   gap: 25px;
   margin: 20px 0;
-}
-
-.party-logo {
-  background: white;
-  border-radius: 16px;
-  padding: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
-  transition: transform 0.3s ease;
-}
-
-.party-logo:hover {
-  transform: scale(1.05);
 }
 
 .party-logo img {
@@ -226,22 +197,6 @@ body::after {
   justify-content: center;
   gap: 16px;
   margin-top: 20px;
-}
-
-.social-button {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.social-button:hover {
-  transform: translateY(-3px) scale(1.1);
 }
 
 .social-button img {

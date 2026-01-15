@@ -59,6 +59,23 @@ function App() {
 
   return (
     <div className="App">
+      {/* Logos del partido animados en el fondo */}
+      {[...Array(6)].map((_, i) => (
+        <img
+          key={i}
+          src="https://raw.githubusercontent.com/appyem/imagenesappy/refs/heads/main/conservador.avif"
+          alt="Partido Conservador Fondo"
+          className="party-logo-bg"
+          style={{
+            width: '60px',
+            top: `${15 + (i * 15) % 70}%`,
+            left: `${10 + (i * 20) % 80}%`,
+            animationDelay: `${i * 2}s`,
+            animationDuration: `${20 + i * 3}s`
+          }}
+        />
+      ))}
+
       {/* Candidate Image */}
       <div className="candidate-section">
         <motion.img
@@ -87,10 +104,13 @@ function App() {
         <AnimatePresence mode="wait">
           <motion.div
             key={sloganPhase}
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.4 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ 
+              duration: 0.6,
+              ease: "easeInOut" // Transición suave
+            }}
             className="slogan-text"
           >
             {sloganPhases[sloganPhase]}
